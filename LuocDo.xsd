@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LuocDo"
+    targetNamespace="http://tempuri.org/LuocDo.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/LuocDo.xsd"
+    xmlns:mstns="http://tempuri.org/LuocDo.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <!--ràng buộc họ tên-->
+  <xs:simpleType name="HTType">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"></xs:maxLength>
+      <xs:minLength value="2"></xs:minLength>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--ràng buộc trình độ-->
+  <xs:simpleType name="TDType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Đại Học"></xs:enumeration>
+      <xs:enumeration value="Cao Đẳng"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--ràng buộc giới tính-->
+  <xs:simpleType name="GTType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Nam"></xs:enumeration>
+      <xs:enumeration value="Nữ"></xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--ràng buộc ngày sinh-->
+  <xs:simpleType name="NSType">
+    <xs:restriction base="xs:date">
+      <xs:minExclusive value="1995-01-01"></xs:minExclusive>
+      <xs:maxExclusive value="2005-01-01"></xs:maxExclusive>
+    </xs:restriction>
+  </xs:simpleType>
+  <!--ràng buộc mã-->
+  <xs:simpleType name="MaType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-zA-Z0-9]{10}"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <!--tạo kiểu complextype-->
+  <xs:complexType name="SVType">
+    <xs:sequence>
+      <xs:element name="HoTen" type="HTType"></xs:element>
+      <xs:element name="TrinhDo" type="TDType"></xs:element>
+      <xs:element name="GioiTinh" type="GTType"></xs:element>
+      <xs:element name="NgaySinh" type="NSType"></xs:element>
+      <xs:element name="Que" type="HTType"></xs:element>
+    </xs:sequence>
+    <xs:attribute name="Ma" type="MaType"></xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="SinhVienType">
+    <xs:sequence>
+      <xs:element name="SinhVien" type="SVType" minOccurs="0" maxOccurs="unbounded"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:element name="QLSV" type="SinhVienType"></xs:element>
+</xs:schema>
